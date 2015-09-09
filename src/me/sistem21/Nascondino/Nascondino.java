@@ -27,16 +27,16 @@ public class Nascondino extends JavaPlugin implements Listener{
 	public void onEnable(){
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
 		
-	    abilitato = new ItemStack(Material.INK_SACK, 1, (short) 10);
-	    ItemMeta abilitatoM = abilitato.getItemMeta();
-		abilitatoM.setDisplayName("§bGiocatori §7- §aAbilitati");
-		abilitatoM.setLore(Arrays.asList("§7Abilita i giocatori"));
+	        abilitato = new ItemStack(Material.INK_SACK, 1, (short) 10);
+	        ItemMeta abilitatoM = abilitato.getItemMeta();
+	        abilitatoM.setDisplayName("Â§bGiocatori Â§7- Â§aAbilitati");
+		abilitatoM.setLore(Arrays.asList("Â§7Abilita i giocatori"));
 		abilitato.setItemMeta(abilitatoM);
 		
 		disabilitato = new ItemStack(Material.INK_SACK, 1, (short) 8);
 		ItemMeta disabilitatoM = disabilitato.getItemMeta();
-		disabilitatoM.setDisplayName("§bGiocatori §7- §aDisabilitati");
-		disabilitatoM.setLore(Arrays.asList("§7Disabilita i giocatori"));
+		disabilitatoM.setDisplayName("Â§bGiocatori Â§7- Â§aDisabilitati");
+		disabilitatoM.setLore(Arrays.asList("Â§7Disabilita i giocatori"));
 		disabilitato.setItemMeta(disabilitatoM);
 		
 		this.cooldown = new HashMap<>();
@@ -60,8 +60,8 @@ public class Nascondino extends JavaPlugin implements Listener{
 		if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK){
 			if(item.hasItemMeta()){
 				if(item.getItemMeta().hasDisplayName()){
-					if(item.getItemMeta().getDisplayName().equals("§bGiocatori §7- §aAbilitati")){
-						if(puòUsarlo(p, cooldown, 7)){
+					if(item.getItemMeta().getDisplayName().equals("Â§bGiocatori Â§7- Â§aAbilitati")){
+						if(puÃ²Usarlo(p, cooldown, 7)){
 							for(Player pl : Bukkit.getOnlinePlayers()){
 								if(p.canSee(pl)){
 									p.hidePlayer(pl);
@@ -69,10 +69,10 @@ public class Nascondino extends JavaPlugin implements Listener{
 							}
 							p.getInventory().removeItem(abilitato);
 							p.setItemInHand(disabilitato);
-							p.sendMessage("§9§lHub §8§l» §7Hai §cnascosto §7gli altri giocatori");
+							p.sendMessage("Â§9Â§lHub Â§8Â§lÂ» Â§7Hai Â§cnascosto Â§7gli altri giocatori");
 						}
-					}else if(item.getItemMeta().getDisplayName().equals("§bGiocatori §7- §aDisabilitati")){
-						if(puòUsarlo(p, cooldown, 7)){
+					}else if(item.getItemMeta().getDisplayName().equals("Â§bGiocatori Â§7- Â§aDisabilitati")){
+						if(puÃ²Usarlo(p, cooldown, 7)){
 							for(Player pl : Bukkit.getOnlinePlayers()){
 								if(p.canSee(pl)){
 									e.setCancelled(true);
@@ -82,7 +82,7 @@ public class Nascondino extends JavaPlugin implements Listener{
 							}
 							p.getInventory().remove(disabilitato);
 							p.setItemInHand(abilitato);
-							p.sendMessage("§9§lHub §8§l» §7Ora puoi §avedere §7gli altri giocatori.");
+							p.sendMessage("Â§9Â§lHub Â§8Â§lÂ» Â§7Ora puoi Â§avedere Â§7gli altri giocatori.");
 						}
 					}
 				}
@@ -96,20 +96,20 @@ public class Nascondino extends JavaPlugin implements Listener{
 	    Player player = event.getPlayer();
 	    if ((!player.isOp())) {
 	      event.setCancelled(true);
-	      player.sendMessage("§9§lHub §8§l» §cNon puoi buttare item a terra!");
+	      player.sendMessage("Â§9Â§lHub Â§8Â§lÂ» Â§cNon puoi buttare item a terra!");
 	    }
 	  }
 	
-	public boolean puòUsarlo(Player p, Map<UUID, Long> map, int secondi){
+	public boolean puÃ²Usarlo(Player p, Map<UUID, Long> map, int secondi){
 		UUID uuid = p.getUniqueId();
 		
 		if(map.containsKey(uuid)){
 			long differenza = (System.currentTimeMillis() - map.get(uuid)) / 1000;
 			if(differenza < secondi){
 				if(secondi - differenza == 1){
-					p.sendMessage("§9§lHub §8§l» §7Aspetta §9" + (secondi - differenza) + " secondo §7prima di riprovare.");
+					p.sendMessage("Â§9Â§lHub Â§8Â§lÂ» Â§7Aspetta Â§9" + (secondi - differenza) + " secondo Â§7prima di riprovare.");
 				}else{
-					p.sendMessage("§9§lHub §8§l» §7Aspetta §9" + (secondi - differenza) + " secondi §7prima di riprovare.");
+					p.sendMessage("Â§9Â§lHub Â§8Â§lÂ» Â§7Aspetta Â§9" + (secondi - differenza) + " secondi Â§7prima di riprovare.");
 					return false;
 				}
 				
