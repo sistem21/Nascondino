@@ -61,7 +61,7 @@ public class Nascondino extends JavaPlugin implements Listener{
 			if(item.hasItemMeta()){
 				if(item.getItemMeta().hasDisplayName()){
 					if(item.getItemMeta().getDisplayName().equals("§bGiocatori §7- §aAbilitati")){
-						if(puòUsarlo(p, cooldown, 7)){
+						if(canUse(p, cooldown, 7)){
 							for(Player pl : Bukkit.getOnlinePlayers()){
 								if(p.canSee(pl)){
 									p.hidePlayer(pl);
@@ -72,7 +72,7 @@ public class Nascondino extends JavaPlugin implements Listener{
 							p.sendMessage("§9§lHub §8§l» §7Hai §cnascosto §7gli altri giocatori");
 						}
 					}else if(item.getItemMeta().getDisplayName().equals("§bGiocatori §7- §aDisabilitati")){
-						if(puòUsarlo(p, cooldown, 7)){
+						if(canUse(p, cooldown, 7)){
 							for(Player pl : Bukkit.getOnlinePlayers()){
 								if(p.canSee(pl)){
 									e.setCancelled(true);
@@ -100,7 +100,7 @@ public class Nascondino extends JavaPlugin implements Listener{
 	    }
 	  }
 	
-	public boolean puòUsarlo(Player p, Map<UUID, Long> map, int secondi){
+	public boolean canUse(Player p, Map<UUID, Long> map, int secondi){
 		UUID uuid = p.getUniqueId();
 		
 		if(map.containsKey(uuid)){
