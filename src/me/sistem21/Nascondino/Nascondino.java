@@ -22,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Nascondino extends JavaPlugin implements Listener{
 	
 	private Map<UUID, Long> cooldown;
-	ItemStack abilitato,disabilitato;
+	private ItemStack abilitato,disabilitato;
 	
 	public void onEnable(){
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
