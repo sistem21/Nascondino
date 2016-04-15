@@ -108,6 +108,7 @@ public class Nascondino extends JavaPlugin implements Listener{
 			if(differenza < secondi){
 				if(secondi - differenza == 1){
 					p.sendMessage("§9§lHub §8§l» §7Aspetta §9" + (secondi - differenza) + " secondo §7prima di riprovare.");
+					return false;
 				}else{
 					p.sendMessage("§9§lHub §8§l» §7Aspetta §9" + (secondi - differenza) + " secondi §7prima di riprovare.");
 					return false;
@@ -120,6 +121,7 @@ public class Nascondino extends JavaPlugin implements Listener{
 		}else{
 			map.put(uuid, System.currentTimeMillis());
 		}
+		
 		return true;
 	}
 	
